@@ -8,7 +8,7 @@ CREATE TABLE employee (
   firstName VARCHAR(50) NOT NULL,
   lastName VARCHAR(50) NOT NULL,
   roleId INT NOT NULL,
-  managerId INT NOT NULL,
+  managerId INT,
   PRIMARY KEY(id)
 );
 
@@ -25,5 +25,5 @@ CREATE TABLE roles (
   roles VARCHAR(30) NOT NULL,
   deptId INT NOT NULL,
   salary DECIMAL ,
-  primary key(id),
+  primary key(id)
 );
