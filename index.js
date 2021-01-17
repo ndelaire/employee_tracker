@@ -89,8 +89,8 @@ function addEmployee() {
             },
             {
                 name: "managerID",
-                type: "input",
-                message: "Who is the employee's manager ID?",
+                type: "number",
+                message: "What is the employee manager's ID?",
 
             },
             {
