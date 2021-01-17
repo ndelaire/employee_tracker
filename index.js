@@ -29,9 +29,7 @@ function start() {
                 "View All Roles",
                 "Add Department",
                 "View All Departments",
-                "Update Employee Role",
-                "Update Employee Manager",
-                "Delete Information",
+                "Update Employee",
                 "Exit"
             ]
         })
@@ -63,13 +61,7 @@ function start() {
                 case "Update Employee":
                     updateEmployee();
                     break;
-                case "Update Employee Role":
-                    updateRole();
-                    break;
-
-                case "Update Employee Manager":
-                    updateManager();
-                    break;
+              
 
                 case "Delete Information":
                     deleteInformation();
@@ -227,7 +219,7 @@ function addEmployee() {
                 );
             });
     }
-
+// why is this function greyed out? 
     function viewDepartments() {
         connection.query("SELECT * FROM department", function (err, results) {
             if (err) throw err;
@@ -239,18 +231,10 @@ function addEmployee() {
     function updateEmployee() {
         connection.query("SELECT * FROM employee", function (err, employees) {
             if (err) throw err;
-         
-            
-                    }
-                  );
-                });
-            });
-          });
-        }
+        //  how to update? 
      }
 
-                function updateRole() {}
-
-                function updateManager() {}
-
-                function deleteInformation()
+    
+    function deleteInformation() {
+        // how to delete? 
+    }
