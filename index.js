@@ -122,8 +122,7 @@ function addEmployee() {
                     firstName: answer.addFirstName,
                     lastName: answer.addLastName,
                     roleId: answer.addRoleId,
-                    managerId: answer.managerId
-
+                    managerId: answer.managerID
                 },
                 function (err) {
                     if (err) throw err;
