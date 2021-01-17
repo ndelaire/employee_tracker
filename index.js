@@ -68,6 +68,11 @@ function start() {
                 case "Update Employee Manager":
                     updateManager();
                     break;
+                    
+                case "Delete Information":
+                        deleteInformation();
+              
+                        break;
 
                 case "Exit":
                     connection.end();
@@ -218,3 +223,5 @@ function addEmployee() {
         function updateRole() {}
 
         function updateManager() {}
+
+        function deleteInformation()
