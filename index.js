@@ -60,7 +60,9 @@ function start() {
                 case "View All Departments":
                     viewDepartments();
                     break;
-
+                case "Update Employee":
+                    updateEmployee();
+                    break;
                 case "Update Employee Role":
                     updateRole();
                     break;
@@ -68,11 +70,11 @@ function start() {
                 case "Update Employee Manager":
                     updateManager();
                     break;
-                    
+
                 case "Delete Information":
-                        deleteInformation();
-              
-                        break;
+                    deleteInformation();
+
+                    break;
 
                 case "Exit":
                     connection.end();
@@ -82,8 +84,7 @@ function start() {
 
 function addEmployee() {
     inquirer
-        .prompt([
-            {
+        .prompt([{
                     name: "addFirstName",
                     type: "input",
                     message: "What is the first name?",
@@ -119,7 +120,7 @@ function addEmployee() {
                 ])
             .then(function (answer) {
                 connection.query(
-                    "INSERT INTO employees SET ?", {
+                    "INSERT INTO employee SET ?", {
                         firstName: answer.firstName,
                         lastName: answer.lastName,
                         addDepartment: answer.addDepartment,
@@ -136,92 +137,120 @@ function addEmployee() {
         }
 
     function viewEmployees() {
-        connection.query("SELECT * FROM employees", function (err, results) {
+        connection.query("SELECT * FROM employee", function (err, results) {
             if (err) throw err;
-            console.table(results);
+    
             start();
-          });
+        });
     }
 
     function addRole() {
         inquirer
             .prompt([{
-                name: "addRole",
-                type: "input",
-                message: "What role would you like to add?",
-            }])
+                    name: "addRole",
+                    type: "input",
+                    message: "What role would you like to add?",
+
+                    name: "deptName",
+                    type: "input",
+                    message: "What is the department for them?",
+
+// should this be a choices?
+
+                    name: "salary",
+                    type: "input",
+                    message: "What is the role's salary?",
+
+                }
+            ])
+    .then(function (answer) {
+        connection.query(
+            "INSERT INTO roles SET ?", {
+                role: answer.addRole,
+                deptName: answer.deptName,
+                salary: answer.salary,
+
+            },
+            function (err) {
+                if (err) throw err;
+                console.log("Role added");
+                start();
+            }
+        );
+    });
+
+    function viewRoles() {
+        connection.query("SELECT * FROM roles", function (err, results) {
+            if (err) throw err;
+           
+            start();
+        });
+    }
+
+    function addDepartment() {
+        inquirer
+            .prompt([{
+                    name: "addDepartment",
+                    type: "input",
+                    message: "What department would you like to add?",
+                },
+                {
+                    name: "deptManager",
+                    type: "input",
+                    message: "Who manages this department?",
+                },
+                {
+                    name: "deptId",
+                    type: "input",
+                    message: "What is the Department ID?",
+                    validate: function (answer) {
+                        if (isNaN(answer)) {
+                            return "ID must only contain numbers.";
+                        } else {
+                            return true;
+                        }
+                    },
+                },
+            ])
             .then(function (answer) {
                 connection.query(
-                    "INSERT INTO roles SET ?", {
-                        role: answer.addRole,
+                    "INSERT INTO department SET ?", {
+                        departmentName: answer.departmentName,
+                        deptManager: answer.deptManager,
+                        deptId: answer.deptID
                     },
                     function (err) {
                         if (err) throw err;
-                        console.log("Role added");
+                        console.log("Department added");
                         start();
                     }
                 );
             });
+    }
 
-        function viewRoles() {
-            connection.query("SELECT * FROM roles", function (err, results) {
-                if (err) throw err;
-                console.table(results);
-                start();
-              });
-        }
+    function viewDepartments() {
+        connection.query("SELECT * FROM department", function (err, results) {
+            if (err) throw err;
+         
+            start();
+        });
+    }
 
-        function addDepartment() {
-            inquirer
-                .prompt([{
-                        name: "addDepartment",
-                        type: "input",
-                        message: "What department would you like to add?",
-                    },
-                    {
-                        name: "deptManager",
-                        type: "input",
-                        message: "Who manages this department?",
-                    },
-                    {
-                        name: "deptId",
-                        type: "input",
-                        message: "What is the Department ID?",
-                        validate: function (answer) {
-                            if (isNaN(answer)) {
-                                return "ID must only contain numbers.";
-                            } else {
-                                return true;
-                            }
-                        },
-                    },
-                ])
-                .then(function (answer) {
-                    connection.query(
-                        "INSERT INTO department SET ?", {
-                            departmentName: answer.departmentName,
-                            deptManager: answer.deptManager,
-                            deptId: answer.deptID
-                        },
-                        function (err) {
-                            if (err) throw err;
-                            console.log("Department added");
-                            start();
-                        }
-                    );
+    function updateEmployee() {
+        connection.query("SELECT * FROM employee", function (err, employees) {
+            if (err) throw err;
+         
+            
+                    }
+                  );
                 });
+            });
+          });
         }
+     }
 
-        function viewDepartments() {
-            connection.query("SELECT * FROM department", function (err, results) {
-                if (err) throw err;
-                console.table(results);
-                start();
-              });
-        }
+                function updateRole() {}
 
-        function updateRole() {}
+                function updateManager() {}
 
-        function updateManager() {}
-
-        function deleteInformation()
+                function deleteInformation()
