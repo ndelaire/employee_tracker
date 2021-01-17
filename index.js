@@ -31,6 +31,8 @@ function start() {
                 "View All Departments",
                 "Update Employee",
                 "Delete Employee",
+                "Delete Role",
+                "Delete Department",
                 "Exit"
             ]
         })
@@ -68,6 +70,14 @@ function start() {
                     deleteInformation();
 
                     break;
+                    case "Delete Role":
+                        deleteRole();
+    
+                        break;
+                        case "Delete Department":
+                            deleteDept();
+        
+                            break;
 
                 case "Exit":
                     connection.end();
@@ -276,4 +286,49 @@ function updateEmployee() {
                   );
                 })
             }
+            function deleteRole() {
+                inquirer.prompt(
+                    {
+                        name: "deleteRole",
+                        type: "number",
+                        message: "What is the role ID number?",
+                    }
+        
+                ).then (function (answer){
+                connection.query(
+                    "DELETE FROM roles WHERE ?",
+                    {
+                      id: answer.deleteRole
+                    },
+                    function(err, res) {
+                      if (err) throw err;
+                   
+                      start();
+                    }
+                  );
+                })
+            }
+            function deleteDept() {
+                inquirer.prompt(
+                    {
+                        name: "deleteDept",
+                        type: "number",
+                        message: "What is the department ID number?",
+                    }
+        
+                ).then (function (answer){
+                connection.query(
+                    "DELETE FROM department WHERE ?",
+                    {
+                      id: answer.deleteDept
+                    },
+                    function(err, res) {
+                      if (err) throw err;
+                   
+                      start();
+                    }
+                  );
+                })
+            }
+                
                 
