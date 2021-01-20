@@ -32,5 +32,4 @@ To use the app, you will need to use node.js, inquirer and mySQL. Once you hav t
 ## Contact
 
 * Nadine Delaire :  ndelaire16@gmail.com
-* Repo: https://github.com/ndelaire/notetaker
-
+* Repo: https://github.com/ndelaire/employee_tracker
